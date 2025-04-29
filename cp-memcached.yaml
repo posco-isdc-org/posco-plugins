@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cp-memcached
+  namespace: posco-app
+  labels:
+    app: cp-memcached
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cp-memcached
+  template:
+    metadata:
+      labels:
+        app: cp-memcached
+    spec:
+      containers:
+      - name: cp-memcached
+        image: 088736462092.dkr.ecr.ap-south-1.amazonaws.com/posco-ecr:cp-memcached
+        ports:
+        - containerPort: 11211  # Memcached client port
+        env:
+        - name: MEMCACHED_MEMORY
+          value: "64"  # Memcached Memory
+        - name: MEMCACHED_CONNECTIONS
+          value: "1024"  # Memcache connection
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cp-memcached
+  namespace: posco-app
+spec:
+  selector:
+    app: cp-memcached
+  ports:
+  - name: memcached
+    protocol: TCP
+    port: 11211  # Exposing the Memcached client port
+    targetPort: 11211

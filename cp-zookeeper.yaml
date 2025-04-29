@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cp-zookeeper
+  namespace: posco-app
+  labels:
+    app: cp-zookeeper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cp-zookeeper
+  template:
+    metadata:
+      labels:
+        app: cp-zookeeper
+    spec:
+      containers:
+      - name: cp-zookeeper
+        image: 088736462092.dkr.ecr.ap-south-1.amazonaws.com/posco-ecr:cp-zookeeper
+        ports:
+        - containerPort: 2181  # Zookeeper client port
+        env:
+        - name: ZOOKEEPER_CLIENT_PORT
+          value: "2181"  # Zookeeper client port
+        - name: ZOOKEEPER_TICK_TIME
+          value: "2000"  # Zookeeper tick time
+        - name: ZOOKEEPER_SYNC_LIMIT
+          value: "2"  # Zookeeper sync limit
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cp-zookeeper
+  namespace: posco-app
+spec:
+  selector:
+    app: cp-zookeeper
+  ports:
+  - name: zookeeper
+    protocol: TCP
+    port: 2181  # Exposing the Zookeeper client port
+    targetPort: 2181
