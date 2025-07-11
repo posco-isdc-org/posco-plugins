@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: cp-kafka
-        image: 088736462092.dkr.ecr.ap-south-1.amazonaws.com/posco-ecr:cp-kafka
+        image: 088736462092.dkr.ecr.ap-south-1.amazonaws.com/posco-ecr-test:cp-kafka
         imagePullPolicy: Always
         ports:
         - containerPort: 9092  # Kafka internal listener port
@@ -35,6 +35,8 @@ spec:
           value: "INTERNAL"
         - name: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
           value: "1"
+      imagePullSecrets:
+        - name: ecr-creds
 ---
 apiVersion: v1
 kind: Service

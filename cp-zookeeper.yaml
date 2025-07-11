@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: cp-zookeeper
-        image: 088736462092.dkr.ecr.ap-south-1.amazonaws.com/posco-ecr:cp-zookeeper
+        image: 088736462092.dkr.ecr.ap-south-1.amazonaws.com/posco-ecr-test:cp-zookeeper
         ports:
         - containerPort: 2181  # Zookeeper client port
         env:
@@ -27,6 +27,8 @@ spec:
           value: "2000"  # Zookeeper tick time
         - name: ZOOKEEPER_SYNC_LIMIT
           value: "2"  # Zookeeper sync limit
+      imagePullSecrets:
+        - name: ecr-creds
 ---
 apiVersion: v1
 kind: Service

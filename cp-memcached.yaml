@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: cp-memcached
-        image: 088736462092.dkr.ecr.ap-south-1.amazonaws.com/posco-ecr:cp-memcached
+        image: 088736462092.dkr.ecr.ap-south-1.amazonaws.com/posco-ecr-test:cp-memcached
         ports:
         - containerPort: 11211  # Memcached client port
         env:
@@ -25,6 +25,8 @@ spec:
           value: "64"  # Memcached Memory
         - name: MEMCACHED_CONNECTIONS
           value: "1024"  # Memcache connection
+      imagePullSecrets:
+        - name: ecr-creds
 ---
 apiVersion: v1
 kind: Service
