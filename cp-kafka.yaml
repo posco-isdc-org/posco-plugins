@@ -35,8 +35,6 @@ spec:
           value: "INTERNAL"
         - name: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
           value: "1"
-      imagePullSecrets:
-        - name: ecr-creds
 ---
 apiVersion: v1
 kind: Service

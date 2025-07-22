@@ -25,8 +25,6 @@ spec:
           value: "64"  # Memcached Memory
         - name: MEMCACHED_CONNECTIONS
           value: "1024"  # Memcache connection
-      imagePullSecrets:
-        - name: ecr-creds
 ---
 apiVersion: v1
 kind: Service
