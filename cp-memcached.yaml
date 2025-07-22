@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: cp-memcached
-        image: 088736462092.dkr.ecr.ap-south-1.amazonaws.com/posco-ecr-test:cp-memcached
+        image: 088736462092.dkr.ecr.ap-south-1.amazonaws.com/posco-ecr:cp-memcached
         ports:
         - containerPort: 11211  # Memcached client port
         env:

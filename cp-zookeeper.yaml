@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: cp-zookeeper
-        image: 088736462092.dkr.ecr.ap-south-1.amazonaws.com/posco-ecr-test:cp-zookeeper
+        image: 088736462092.dkr.ecr.ap-south-1.amazonaws.com/posco-ecr:cp-zookeeper
         ports:
         - containerPort: 2181  # Zookeeper client port
         env:
